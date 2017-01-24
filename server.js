@@ -320,7 +320,7 @@ router.get('/instruments/:instrumentName', function(req, res){
 	res.json(instrument);
 });
 
-router.get('/instruments/family/:instrumentFamily', function(req,res){
+router.get('/family/:instrumentFamily', function(req,res){
 	var instrumentFamily = req.params.instrumentFamily;
 
 	/*
@@ -335,7 +335,7 @@ router.get('/instruments/family/:instrumentFamily', function(req,res){
 	res.json(instrumentList);
 });
 
-router.get('/instruments/pitch/:instrumentPitch', function(req,res){
+router.get('/pitch/:instrumentPitch', function(req,res){
 	var instrumentPitch = pitch.params.instrumentPitch;
 
 	/*
@@ -350,7 +350,7 @@ router.get('/instruments/pitch/:instrumentPitch', function(req,res){
 	res.json(instrumentList);
 });
 
-router.get('/instruments/family/:instrumentSounds', function(req,res){
+router.get('/sounds/:instrumentSounds', function(req,res){
 	var instrumentSounds = sounds.params.instrumentSounds;
 
 	/*
@@ -364,7 +364,7 @@ router.get('/instruments/family/:instrumentSounds', function(req,res){
 
 	res.json(instrumentList);
 });
-router.get('/instruments/family/:instrumentTransposes', function(req,res){
+router.get('/transposes/:instrumentTransposes', function(req,res){
 	var instrumentTransposes = transposes.params.instrumentTransposes;
 
 	/*
@@ -379,7 +379,7 @@ router.get('/instruments/family/:instrumentTransposes', function(req,res){
 	res.json(instrumentList);
 });
 
-router.get('/instruments/family/:instrumentClef', function(req,res){
+router.get('/clef/:instrumentClef', function(req,res){
 	var instrumentClef = clef.params.instrumentClef;
 
 	/*
