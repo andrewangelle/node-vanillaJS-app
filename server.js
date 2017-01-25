@@ -325,77 +325,30 @@ router.get('/family/:instrumentFamily', function(req,res){
 
 	/*
 	*Give back a list of all the instruments that match
-	*the family passed
+	*the family passed via the URL
 	*/
 
-  var instrumentList = instruments.filter(function(family) {
+  var instrumentList = instruments.filter(function(instrument) {
     return instrument.family === instrumentFamily;
   });
 
 	res.json(instrumentList);
 });
 
-router.get('/pitch/:instrumentPitch', function(req, res){
-	var instrumentPitch = pitch.params.instrumentPitch;
-
-	/*
-	*Give back a list of all the instruments that match
-	*the pitch passed
-	*/
-
-  var instrumentList = instruments.filter(function(pitch) {
-    return instrument.pitch === instrumentPitch;
-  });
-
-	res.json(instrumentList);
-});
-
-router.get('/sounds/:instrumentSounds', function(req,res){
-	var instrumentSounds = sounds.params.instrumentSounds;
-
-	/*
-	*Give back a list of all the instruments that match
-	*the sounds passed
-	*/
-
-  var instrumentList = instruments.filter(function(sounds) {
-    return instrument.sounds === instrumentSounds;
-  });
-
-	res.json(instrumentList);
-});
-router.get('/transposes/:instrumentTransposes', function(req,res){
-	var instrumentTransposes = transposes.params.instrumentTransposes;
-
-	/*
-	*Give back a list of all the instruments that match
-	*the transposes attribute passed
-	*/
-
-  var instrumentList = instruments.filter(function(transposes) {
-    return instrument.transposes === instrumentTransposes;
-  });
-
-	res.json(instrumentList);
-});
-
 router.get('/clef/:instrumentClef', function(req,res){
-	var instrumentClef = clef.params.instrumentClef;
+	var instrumentClef = req.params.instrumentClef;
 
 	/*
 	*Give back a list of all the instruments that match
-	*the clef passed
+	*the clef attribute passed via the URL
 	*/
 
-  var instrumentList = instruments.filter(function(clef) {
+  var instrumentList = instruments.filter(function(instrument) {
     return instrument.clef === instrumentClef;
   });
 
 	res.json(instrumentList);
 });
-
-
-
 
 //REGISTER OUR ROUTES-------------------------------
 //all of our routes will be prefixed with /api
