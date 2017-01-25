@@ -1,8 +1,14 @@
 # node-express-api
-mock database with instrument data that you can
-sort by instrument name,family,clef,sounds.
-
 API built using Express and Node.js
+
+server.js includes mock database with instrument data 
+
+
+Using the local path created via API
+user can sort by instrument name,family,clef 
+and get back all corresponding data.
+
+
 
 using this tutorial: https://scotch.io/tutorials/
 
