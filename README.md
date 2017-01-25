@@ -1,7 +1,10 @@
-# node-express-api
-API built using Express and Node.js
+# Instrument App step 1:
 
-server.js includes mock database with instrument data 
+API built using Express and Node.js 
+and using this tutorial: https://scotch.io/tutorials/
+
+server.js includes mock database with individual instruments
+and their data
 
 
 Using the local path created via API
@@ -10,7 +13,7 @@ and get back all corresponding data.
 
 
 
-using this tutorial: https://scotch.io/tutorials/
+
 
 
 //Resources for instrument data:
