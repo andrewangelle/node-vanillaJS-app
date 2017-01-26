@@ -31,6 +31,12 @@ user can sort by instrument name,family,clef
 and get back all corresponding data.
 
 1/26
+-npm install nodemon --save
+
+-tested index.html in broswer. Works
+
+-shell doesn't show the same info by the directory nodemon
+was demonstrated to me
 
 
 --------------------------------------------------------
