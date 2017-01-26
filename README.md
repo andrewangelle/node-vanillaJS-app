@@ -35,8 +35,7 @@ and get back all corresponding data.
 
 -tested index.html in broswer. Works
 
--shell doesn't show the same info by the directory nodemon
-was demonstrated to me
+-Tested nodemon works.
 
 
 --------------------------------------------------------
