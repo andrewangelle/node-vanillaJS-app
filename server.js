@@ -354,6 +354,10 @@ router.get('/clef/:instrumentClef', function(req,res){
 //all of our routes will be prefixed with /api
 app.use('/api', router);
 
+// Serve all static files in the root directory
+app.use(express.static('./'));
+
+
 // START THE SERVER
 //==========================================================================
 
