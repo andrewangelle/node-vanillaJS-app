@@ -1,15 +1,19 @@
 # Instrument App step 1:
+Requirements
+------------------------------------------------------------------------
+	-Node.JS
 
-Project Goal:---------------------------------------------------------
+Project Goals
+-----------------------------------------------------------------------
 
-Step by step Full Stack development of a web application that
-includes a dynamic UI that facilitates searching 
-a locally held database of instrument data --or a version of a database--
-that a user can set parameters to filter by attribute(s)
-,and then recieve back data pertaining to the filter parameters set by the user.
+	-Step by step Full Stack development of a web application that
+	includes a dynamic UI that facilitates searching 
+	a locally held database of instrument data --or a version of a database-- that a user can then set up parameters to filter by attribute(s)
 
-(e.g. All instruments in the Strings family, All instruments that read treble clef
-, all instruments that sound at concert pitch.)
+	--Example: 
+		User can search 'All instruments in the Strings family', or 'All instruments that read treble clef', or 'All instruments that sound at concert pitch'etc.)
+
+	, then they will recieve back all corresponding instruments along with each instruments' individual data points.
 
 ----------------------------------------------------------------------------
 
