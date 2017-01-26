@@ -46,7 +46,7 @@ user can sort by instrument name,family,clef
 and get back all corresponding data.
 
 1/26
--npm install nodemon --save
+-merged Zak's fork for starting FE model.
 
 -tested index.html in broswer. Works
 
