@@ -6,28 +6,27 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
   </head>
   <body>
+    <form id="instrument-form name">
+      <label for="instrument-name">Search By Name</label>
+      <input type="text" id="instrument-name" />
+      <input type="submit" value="Search">
+    </form> 
+
     <form id="instrument-form family">
-      <label for="instrument-family">Search By</label>
-      <button class="buttons" id='family-button'>Families</button>
+      <label for="instrument-family">Search By Family</label>
       <input type="text" id="instrument-family" />
       <input type="submit" value="Search">
     </form>
 
-    <form id="instrument-form name">
-      <label for="instrument-name">Search By</label>
-      <button class="buttons" id="name-button">Name</button>
-      <input type="text" id="instrument-name" />
-      <input type="submit" value="Search">
-    </form>
-
     <form id="instrument-form clef">
-      <label for="instrument-clef">Search By</label>
-      <button class="buttons" id="name-button">Clef</button>
+      <label for="instrument-clef">Search By Clef</label>
       <input type="text" id="instrument-clef" />
       <input type="submit" value="Search">
     </form>
 
     <ul id="results"></ul>
+
+    
 
     <script src="main.js"></script>
   </body>

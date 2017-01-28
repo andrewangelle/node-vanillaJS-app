@@ -47,10 +47,12 @@ and get back all corresponding data.
 
 1/26
 -merged Zak's fork for starting FE model.
-
 -tested index.html in broswer. Works
-
 -Tested nodemon works.
+
+1/27
+-added 3 search forms to html for name/families/clef
+-attempted to add JS for the 3 text input fields. 
 
 
 --------------------------------------------------------
