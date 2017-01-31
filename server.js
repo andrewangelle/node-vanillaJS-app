@@ -355,7 +355,7 @@ router.get('/clef/:instrumentClef', function(req,res){
 app.use('/api', router);
 
 // Serve all static files in the root directory
-app.use(express.static('./'));
+app.use(express.static(__dirname));
 
 
 // START THE SERVER

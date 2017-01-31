@@ -1,5 +1,7 @@
-document.getElementById('instrument-form')
-  .addEventListener('submit', function(event) {
+function showInstrumentByFamily(){
+  var instrumentForm = document.getElementById('instrument-form');
+
+  instrumentForm.addEventListener('submit', function(event) {
     event.preventDefault();
 
     var family = document.getElementById('instrument-family').value;
@@ -9,19 +11,20 @@ document.getElementById('instrument-form')
      * Convert JSON to JS object
      * Update results list
      */
-    fetch('http:localhost:8080/api/family/' + family, { mode : 'no-cors'})
+    fetch('/api/family/' + family)
       .then(function(response) {
-        return response.json()
+        return response.json();
       })
       .then(function(results) {
         updateResults(results);
       });
-});
+  });
+}
 
-  /**
-  * For each result, create a new list item and populate the list item
-  * with the name of the instrument, then inject it into the results ul
-  */
+/**
+ * For each result, create a new list item and populate the list item
+ * with the name of the instrument, then inject it into the results ul
+ */
 function updateResults(results) {
   var resultsList = document.getElementById('results');
   resultsList.innerHTML = '';
@@ -34,7 +37,7 @@ function updateResults(results) {
   }
 }
 
-
+showInstrumentByFamily();
 
 
 
