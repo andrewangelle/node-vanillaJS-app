@@ -7,19 +7,31 @@
   </head>
   <body>
     <form id="instrument-form">
+      <label for="instrument-name">Name</label>
+      <input type="text" id="instrument-name" />      
+    <br>
       <label for="instrument-family">Family</label>
       <input type="text" id="instrument-family" />
-
+    <br>
+      <label for="instrument-clef">Clef</label>
+      <input type="text" id="instrument-clef" />
+    <br>
       <input type="submit" value="Search">
     </form>
 
+    <div id="dropdowns family"></div>
 
 
     <ul id="results"></ul>
 
+    <div id="family-container"></div>
+
     
 
     <script src="main.js"></script>
+    <script src="underscore.js"></script>
+    <script src="family.js"></script>
+
   </body>
 </html>
 
