@@ -313,7 +313,7 @@ router.get('/instruments/:instrumentName', function(req, res){
 	*the instrument name passed via the URL
 	*/
 
-	var instrument = instruments.find(function(instrument){
+	var instrument = instruments.filter(function(instrument){
 		return instrument.name === instrumentName;
 	});
 
@@ -339,7 +339,7 @@ router.get('/clef/:instrumentClef', function(req,res){
 	var instrumentClef = req.params.instrumentClef;
 
 	/*
-	*Give back a list of all the instruments that match
+	*Give back a list of all the instruments that matches
 	*the clef attribute passed via the URL
 	*/
 
@@ -350,6 +350,17 @@ router.get('/clef/:instrumentClef', function(req,res){
 	res.json(instrumentList);
 });
 
+router.get('/family/allfamilies', function(req,res){
+
+	/*
+	*Give back a list of all the possible families in database
+	*/
+  var familyList = instruments.map(function(instrument) {
+    return instrument.family;
+  });
+  	console.log(familyList);
+	res.json(familyList);
+});
 //REGISTER OUR ROUTES-------------------------------
 //all of our routes will be prefixed with /api
 app.use('/api', router);
@@ -363,3 +374,4 @@ app.use(express.static(__dirname));
 
 app.listen(port);
 console.log('port at : ' + port);
+ 
