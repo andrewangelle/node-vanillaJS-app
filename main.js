@@ -1,3 +1,6 @@
+//Calling the API's-----------------------------------------------------------
+//--------------------------------------------------------------------
+
 function showInstrumentByName(){
   var instrumentForm = document.getElementById('instrument-form');
 
@@ -71,7 +74,7 @@ function showAllFamilies() {
     /**
      * Fetch JSON data from API
      * Convert JSON to JS object
-     * Update results list
+     * Update dropdown list
      */
   fetch('/api/families')
       .then(function(response) {
@@ -82,14 +85,32 @@ function showAllFamilies() {
       });
 }
 
-function clearResults(){
-  var resultsList = document.getElementById('results');
-  resultsList.innerHTML = '';
+function showAllClefs() {
+    /**
+     * Fetch JSON data from API
+     * Convert JSON to JS object
+     * Update dropdown list
+     */
+  fetch('/api/clefs')
+      .then(function(response) {
+        return response.json();
+      })
+      .then(function(results) {
+        populateClefDropdown(results);
+      });  
 }
 
 
 
 
+
+
+//Results actions------------------------------------------------------
+//--------------------------------------------------------------------
+function clearResults(){
+  var resultsList = document.getElementById('results');
+  resultsList.innerHTML = '';
+}
 
 
 /**
@@ -149,7 +170,25 @@ function populateFamilyDropdown(results) {
   }
 }
 
+function populateClefDropdown(results) {
+  var clefDropdown = document.getElementById('dropdowns-clefs');
+  var uniqueClefList = _.uniq(results);
+  
+  console.log(uniqueClefList);
 
+  for (var result of results) {
+    var optionElement = document.createElement('option');
+    var uniqueClefList = _.uniq(results);
+
+    clefDropdown.innerHTML = `
+        <option> ${ uniqueClefList[0] } </option>
+        <option> ${ uniqueClefList[1] } </option>
+        <option> ${ uniqueClefList[3] } </option>
+    `;
+
+    clefDropdown.appendChild(optionElement);
+  }  
+}
 
 
 
@@ -171,3 +210,4 @@ showInstrumentByName();
 showInstrumentByFamily();
 showInstrumentByClef();
 showAllFamilies();
+showAllClefs();

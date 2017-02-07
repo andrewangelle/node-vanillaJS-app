@@ -6,6 +6,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
   </head>
   <body>
+
+
     <form id="instrument-form">
       <label for="instrument-name">Name</label>
       <input type="text" id="instrument-name" />      
@@ -19,7 +21,17 @@
       <input type="submit" value="Search">
     </form>
 
-    <select name="Families" id="dropdowns-family"></select>
+<br>
+
+    <div id="dropdown-container-families">
+      <label for="Families">Show All Families : </label>
+      <select name="Families" id="dropdowns-family"></select>
+    </div>
+
+    <div id="dropdown-container-clefs">
+      <label for="Clefs">Show All Clefs : </label>  
+      <select name="Clefs" id="dropdowns-clefs"></select>
+    </div>
 
 
     <ul id="results"></ul>

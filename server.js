@@ -358,9 +358,22 @@ router.get('/families', function(req,res){
   var familyList = instruments.map(function(instrument) {
     return instrument.family;
   	});
-  
+
 	res.json(familyList);
 });
+
+router.get('/clefs', function(req,res){
+
+	/*
+	*Give back a list of all the possible families in database
+	*/
+  var clefList = instruments.map(function(instrument) {
+    return instrument.clef;
+  	});
+
+	res.json(clefList);
+});
+
 //REGISTER OUR ROUTES-------------------------------
 //all of our routes will be prefixed with /api
 app.use('/api', router);
