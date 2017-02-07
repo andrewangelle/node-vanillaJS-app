@@ -67,6 +67,21 @@ function showInstrumentByClef(){
   });
 }
 
+function showAllFamilies() {
+    /**
+     * Fetch JSON data from API
+     * Convert JSON to JS object
+     * Update results list
+     */
+  fetch('/api/families')
+      .then(function(response) {
+        return response.json();
+      })
+      .then(function(results) {
+        populateFamilyDropdown(results);
+      });
+}
+
 function clearResults(){
   var resultsList = document.getElementById('results');
   resultsList.innerHTML = '';
@@ -115,46 +130,44 @@ function updateNameResults(results) {
   }
 }
 
+function populateFamilyDropdown(results) {
+  var familyDropdown = document.getElementById('dropdowns-family');
 
+  for (var result of results) {
+    var optionElement = document.createElement('option');
+    var uniqueFamilyList = _.uniq(results);
 
+    familyDropdown.innerHTML = `
+        <option> ${ uniqueFamilyList[0] } </option>
+        <option> ${ uniqueFamilyList[1] } </option>
+        <option> ${ uniqueFamilyList[2] } </option>
+        <option> ${ uniqueFamilyList[3] } </option>
 
-
-
-
-
-
-
-
-
-  /*
-  *Create dropdown menu to select from all possible family options
-  */
-function displayDropdowns(){
-    var familyButton = document.getElementById('dropdowns family');
-    familyButton.innerHTML = `
-    <br>
-    <label for="dropdowns">Show All: </label>
-      <select name="Families">
-        <option value="label">Families</option>
-        <option value="Strings">Strings</option>
-        <option value="Brass">Brass</option>
-        <option value="Woodwinds">Woodinds</option>
-        <option value="Percussion">Percussion</option>
-      </select>
-
-      <select name="Clefs">
-        <option value="Clefs">Clefs</option>
-        <option value="Treble">Treble</option>
-        <option value="Bass">Bass</option>
-        <option value="Alto">Alto</option>
-        <option value="Grand Staff">Grand Staff</option>
-      </select>
     `;
+
+    familyDropdown.appendChild(optionElement);
+  }
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 showInstrumentByName();
 showInstrumentByFamily();
 showInstrumentByClef();
-
-displayDropdowns();
+showAllFamilies();

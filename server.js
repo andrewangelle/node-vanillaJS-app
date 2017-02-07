@@ -350,15 +350,15 @@ router.get('/clef/:instrumentClef', function(req,res){
 	res.json(instrumentList);
 });
 
-router.get('/family/allfamilies', function(req,res){
+router.get('/families', function(req,res){
 
 	/*
 	*Give back a list of all the possible families in database
 	*/
   var familyList = instruments.map(function(instrument) {
     return instrument.family;
-  });
-  	console.log(familyList);
+  	});
+  
 	res.json(familyList);
 });
 //REGISTER OUR ROUTES-------------------------------
