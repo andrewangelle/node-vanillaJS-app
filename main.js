@@ -156,38 +156,23 @@ function populateFamilyDropdown(results) {
 
   for (var result of results) {
     var optionElement = document.createElement('option');
-    var uniqueFamilyList = _.uniq(results);
+    optionElement.innerHTML = result;
 
-    familyDropdown.innerHTML = `
-        <option> ${ uniqueFamilyList[0] } </option>
-        <option> ${ uniqueFamilyList[1] } </option>
-        <option> ${ uniqueFamilyList[2] } </option>
-        <option> ${ uniqueFamilyList[3] } </option>
-
-    `;
 
     familyDropdown.appendChild(optionElement);
   }
 }
 
 function populateClefDropdown(results) {
-  var clefDropdown = document.getElementById('dropdowns-clefs');
-  var uniqueClefList = _.uniq(results);
-  
-  console.log(uniqueClefList);
+  var familyDropdown = document.getElementById('dropdowns-clefs');
 
   for (var result of results) {
     var optionElement = document.createElement('option');
-    var uniqueClefList = _.uniq(results);
+    optionElement.innerHTML = result;
 
-    clefDropdown.innerHTML = `
-        <option> ${ uniqueClefList[0] } </option>
-        <option> ${ uniqueClefList[1] } </option>
-        <option> ${ uniqueClefList[3] } </option>
-    `;
 
-    clefDropdown.appendChild(optionElement);
-  }  
+    familyDropdown.appendChild(optionElement);
+  }
 }
 
 

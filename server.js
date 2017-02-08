@@ -8,6 +8,8 @@
 var express = require('express'); 		//call express
 var app = express();					//define our app using express
 var bodyParser = require('body-parser');
+var _ = require('underscore-node');
+
 
 //configure app to use bodyParser()
 //this will allow us to get data from a POST
@@ -358,8 +360,9 @@ router.get('/families', function(req,res){
   var familyList = instruments.map(function(instrument) {
     return instrument.family;
   	});
+  var uniqueFamilyList = _.uniq(familyList);
 
-	res.json(familyList);
+	res.json(uniqueFamilyList);
 });
 
 router.get('/clefs', function(req,res){
@@ -370,8 +373,9 @@ router.get('/clefs', function(req,res){
   var clefList = instruments.map(function(instrument) {
     return instrument.clef;
   	});
-
-	res.json(clefList);
+  var uniqueClefList = _.uniq(clefList);
+ 
+	res.json(uniqueClefList);
 });
 
 //REGISTER OUR ROUTES-------------------------------
