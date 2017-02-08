@@ -30,7 +30,7 @@ function showInstrumentByFamily(){
   instrumentForm.addEventListener('submit', function(event) {
     event.preventDefault();
 
-    var family = document.getElementById('instrument-family').value;
+    var family = document.getElementById('dropdowns-family').value;
 
     /*
      * Fetch JSON data from family API
@@ -53,7 +53,7 @@ function showInstrumentByClef(){
   instrumentForm.addEventListener('submit', function(event) {
     event.preventDefault();
 
-    var clef = document.getElementById('instrument-clef').value;
+    var clef = document.getElementById('dropdowns-clefs').value;
 
     /**
      * Fetch JSON data from family API
@@ -105,7 +105,7 @@ function showAllClefs() {
 
 
 
-//Results actions------------------------------------------------------
+//Actions with the results from API.------------------------------------------------------
 //--------------------------------------------------------------------
 function clearResults(){
   var resultsList = document.getElementById('results');
@@ -154,6 +154,8 @@ function updateNameResults(results) {
 function populateFamilyDropdown(results) {
   var familyDropdown = document.getElementById('dropdowns-family');
 
+  clearResults();
+
   for (var result of results) {
     var optionElement = document.createElement('option');
     optionElement.innerHTML = result;
@@ -164,14 +166,16 @@ function populateFamilyDropdown(results) {
 }
 
 function populateClefDropdown(results) {
-  var familyDropdown = document.getElementById('dropdowns-clefs');
+  var clefDropdown = document.getElementById('dropdowns-clefs');
+
+  clearResults();
 
   for (var result of results) {
     var optionElement = document.createElement('option');
     optionElement.innerHTML = result;
 
 
-    familyDropdown.appendChild(optionElement);
+    clefDropdown.appendChild(optionElement);
   }
 }
 
