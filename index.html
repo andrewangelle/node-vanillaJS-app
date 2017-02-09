@@ -4,8 +4,15 @@
     <title>Instrument App</title>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="style.css" rel="stylesheet">
+
+    <link rel="stylesheet" type="text/css" href="https://fonts.googleapis.com/css?family=Droid+Sans|Merriweather">
   </head>
   <body>
+
+    <div class="header">
+      <h5 id="header-text">Orchestral Instrument Database</h5>
+    </div>
 
 
     <form id="instrument-form">
@@ -13,16 +20,19 @@
       <input type="text" id="instrument-name" />      
     <br>
       <label for="instrument-family">Family</label>
-      <select name="Families" id="dropdowns-family"></select>
+      <select name="Families" id="dropdowns-family">
+        <option></option>
+      </select>
     <br>
       <label for="instrument-clef">Clef</label>
-      <select name="Clefs" id="dropdowns-clefs"></select>
+      <select name="Clefs" id="dropdowns-clefs">
+        <option></option>
+      </select>
     <br>
       <input type="submit" value="Search">
     </form>
 
 <br>
-
 
     <ul id="results"></ul>
 

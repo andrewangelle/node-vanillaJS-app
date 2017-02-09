@@ -1,0 +1,50 @@
+body {
+	margin:auto;
+	background-color: rgba(129, 175, 222, 1);
+}
+
+
+.header{
+	position:relative;
+}
+
+#header-text {
+	font-family: 'Merriweather', serif;
+	font-size:20px;
+	font-weight:400;
+	margin:auto;
+	position:relative;
+}
+
+.header,
+#instrument-form,
+#results {
+	margin:25px 0 25px 0;
+	width: 100%;
+	height: 30%;
+	border: 10px solid;
+	border-color: rgba(236, 236, 110, 1); ;
+	box-sizing:border-box;
+	left:0;
+}
+
+#instrument-form {
+	position:relative;
+}
+
+#instrument-form,
+#results {
+	font-family: 'Droid Sans', sans-serif;
+	font-size: 12px;
+	font-weight: 40;
+	position:relative;
+}
+
+
+/* design scheme 
+
+color 	: blue: rgba(129, 175, 222, 1)
+		: yellow: rgba(236, 236, 110, 1) 
+
+fonts:	: form text: Droid Sans regular 14px 400
+		: header text: Merriweather regular 40px 400 ;3
