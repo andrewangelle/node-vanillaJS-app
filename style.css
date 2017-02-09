@@ -9,23 +9,26 @@ body {
 }
 
 #header-text {
-	font-family: 'Merriweather', serif;
-	font-size:20px;
-	font-weight:400;
+	font-family: "Merriweather",serif;
+	font-size:30px;
+	font-weight:800;
+	text-align: center;
 	margin:auto;
 	position:relative;
+	padding:50px;
+	box-sizing: border-box;
 }
 
 .header,
 #instrument-form,
 #results {
-	margin:25px 0 25px 0;
-	width: 100%;
+	margin:25px auto 25px auto;
+	width: 80%;
 	height: 30%;
 	border: 10px solid;
 	border-color: rgba(236, 236, 110, 1); ;
 	box-sizing:border-box;
-	left:0;
+
 }
 
 #instrument-form {
