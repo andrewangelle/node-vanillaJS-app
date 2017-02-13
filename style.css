@@ -1,5 +1,5 @@
 body {
-	margin:auto;
+	margin:0;
 	background-color: rgba(129, 175, 222, 1);
 }
 
@@ -9,9 +9,9 @@ body {
 }
 
 #header-text {
-	font-family: "Merriweather",serif;
+	font-family: "Yellowtail",serif;
 	font-size:30px;
-	font-weight:800;
+	font-weight:500;
 	text-align: center;
 	margin:auto;
 	position:relative;
@@ -25,8 +25,8 @@ body {
 	margin:25px auto 25px auto;
 	width: 80%;
 	height: 30%;
-	border: 10px solid;
-	border-color: rgba(236, 236, 110, 1); ;
+	border: 3px solid;
+	border-color: rgba(137, 31, 31, 0.6);
 	box-sizing:border-box;
 
 }
@@ -39,7 +39,7 @@ body {
 #results {
 	font-family: 'Droid Sans', sans-serif;
 	font-size: 12px;
-	font-weight: 40;
+	font-weight: 400;
 	position:relative;
 }
 
@@ -47,7 +47,8 @@ body {
 /* design scheme 
 
 color 	: blue: rgba(129, 175, 222, 1)
-		: yellow: rgba(236, 236, 110, 1) 
+		: yellow: rgba(236, 236, 110, 1)
+		: red: rgba(137, 31, 31, 0.8) 
 
 fonts:	: form text: Droid Sans regular 14px 400
-		: header text: Merriweather regular 40px 400 ;3
+		: header text: Yellowtail regular 40px 400 ;3

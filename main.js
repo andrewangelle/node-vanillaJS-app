@@ -1,4 +1,4 @@
-//Calling the API's-----------------------------------------------------------
+//API Calls-----------------------------------------------------------
 //--------------------------------------------------------------------
 
 function showInstrumentByName(){
@@ -105,7 +105,7 @@ function showAllClefs() {
 
 
 
-//Actions with the results from API.------------------------------------------------------
+//Doing stuff with the results.------------------------------------------------------
 //--------------------------------------------------------------------
 function clearResults(){
   var resultsList = document.getElementById('results');
@@ -158,7 +158,7 @@ function populateFamilyDropdown(results) {
 
   for (var result of results) {
     var optionElement = document.createElement('option');
-    optionElement.innerHTML = result;
+    optionElement.innerHTML = `<h5> ${ result } </h5>`;
 
 
     familyDropdown.appendChild(optionElement);

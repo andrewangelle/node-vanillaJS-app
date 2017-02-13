@@ -101,10 +101,7 @@ var instruments = [
 {
 	name: 'Triangle',
 	family: 'Percussion',
-	pitch: '',
-	sounds: '',
-	transposes: '',
-	clef: '',
+
 },
 {
 	name: 'Chimes',
