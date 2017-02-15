@@ -101,7 +101,10 @@ var instruments = [
 {
 	name: 'Triangle',
 	family: 'Percussion',
-
+	pitch: '',
+	sounds: '',
+	transposes: '',
+	clef: '',
 },
 {
 	name: 'Chimes',
@@ -302,7 +305,22 @@ router.get('/', function(req, res){
 	res.json({message:'Welcome!'})
 });
 
-// more routes for our API will happen here
+// Additional API Routes:-------------------------------------
+router.get('/search', function(req,res) {
+	var filteredInstruments = instruments;
+
+	for(key in req.query)
+		console.log(key);
+
+		var value = req.query[key];
+		console.log(value);
+
+	filteredInstruments = filteredInstruments.filter(function(instrument){
+		return instrument[key] === value;
+	});
+
+	res.json(filteredInstruments);
+});
 
 router.get('/instruments/:instrumentName', function(req, res){
 	var instrumentName = req.params.instrumentName;

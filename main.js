@@ -1,6 +1,44 @@
 //API Calls-----------------------------------------------------------
 //--------------------------------------------------------------------
 
+function multiFieldSearch(){
+  var instrumentForm = document.getElementById('instrument-form');
+
+
+  instrumentForm.addEventListener('submit', function(event) {
+    event.preventDefault();
+
+    var family = document.getElementById('dropdowns-family').value;
+    var clef = document.getElementById('dropdowns-clefs').value;
+    var url = '?';
+
+    if(family){
+      var newURL = `family=${family}`;
+      url = url+newURL;
+      console.log(url);
+    }
+    if(clef){
+      var newURL = `&clef=${clef}`;
+      url = url+newURL;
+      console.log(url);
+    }
+
+
+    /**
+     * Fetch JSON data from family API
+     * Convert JSON to JS object
+     * Update results list
+     */
+    fetch('/api/search'+url)
+      .then(function(response) {
+        return response.json();
+      })
+      .then(function(results) {
+        updateResults(results);
+      });
+  });
+}
+
 function showInstrumentByName(){
   var instrumentForm = document.getElementById('instrument-form');
 
@@ -194,9 +232,6 @@ function populateClefDropdown(results) {
 
 
 
-
-showInstrumentByName();
-showInstrumentByFamily();
-showInstrumentByClef();
+multiFieldSearch();
 showAllFamilies();
 showAllClefs();
