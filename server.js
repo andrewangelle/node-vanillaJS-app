@@ -309,16 +309,16 @@ router.get('/', function(req, res){
 router.get('/search', function(req,res) {
 	var filteredInstruments = instruments;
 
-	for(key in req.query)
+	for(key in req.query){
 		console.log(key);
 
 		var value = req.query[key];
 		console.log(value);
 
-	filteredInstruments = filteredInstruments.filter(function(instrument){
-		return instrument[key] === value;
-	});
-
+		filteredInstruments = filteredInstruments.filter(function(instrument){
+			return instrument[key] === value;
+		});
+	}
 	res.json(filteredInstruments);
 });
 
