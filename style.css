@@ -36,7 +36,8 @@ body {
 }
 
 #instrument-form,
-#results {
+#results,
+#results li {
 	font-family: 'Droid Sans', sans-serif;
 	font-size: 12px;
 	font-weight: 400;

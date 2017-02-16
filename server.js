@@ -9,6 +9,7 @@ var express = require('express'); 		//call express
 var app = express();					//define our app using express
 var bodyParser = require('body-parser');
 var _ = require('underscore-node');
+var pg = require('pg');
 
 
 //configure app to use bodyParser()
@@ -22,283 +23,11 @@ var port = process.env.PORT || 8080;	//set our port
 //======================================================================
 
 var router = express.Router();			//get an instance of the express router
-
-// MOCK DATABASE
-//===========================================================================
-var instruments = [
-{
-	name: 'Trumpet',
-	family: 'Brass',
-	pitch: 'B-flat',
-	sounds: 'M2 lower',
-	transposes: 'M2 higher',
-	clef: 'Treble',
-},
-{
-	name: 'Trombone',
-	family: 'Brass',
-	pitch: 'Concert Pitch',
-	sounds: 'Concert Pitch',
-	transposes: 'none',
-	clef: 'Bass',
-},
-{
-	name: 'Bass Trombone',
-	family: 'Brass',
-	pitch: 'Concert Pitch',
-	sounds: 'P8 lower',
-	transposes: 'P8 higher',
-	clef: 'Bass',
-},
-{
-	name: 'Tuba',
-	family: 'Brass',
-	pitch: 'Concert Pitch',
-	sounds: 'Concert Pitch',
-	transposes: 'none',
-	clef: 'Bass',
-},
-{
-	name: 'French Horn',
-	family: 'Brass',
-	pitch: 'F natural',
-	sounds: 'P5 lower',
-	transposes: 'P5 higher',
-	clef: 'Treble',
-},
-{
-	name: 'Coronet',
-	family: 'Brass',
-	pitch: 'B-flat',
-	sounds: 'M2 lower',
-	transposes: 'M2 higher',
-	clef: 'Treble',
-},
-{
-	name: 'Drums',
-	family: 'Percussion',
-	pitch: '',
-	sounds: '',
-	transposes: '',
-	clef: '',
-},
-{
-	name: 'Cymbals',
-	family: 'Percussion',
-	pitch: '',
-	sounds: '',
-	transposes: '',
-	clef: '',
-},
-{
-	name: 'Piano',
-	family: 'Percussion',
-	pitch: 'Concert Pitch',
-	sounds: 'Concert Pitch',
-	transposes: 'none',
-	clef: 'Grand Staff',
-},
-{
-	name: 'Triangle',
-	family: 'Percussion',
-	pitch: '',
-	sounds: '',
-	transposes: '',
-	clef: '',
-},
-{
-	name: 'Chimes',
-	family: 'Percussion',
-	pitch: '',
-	sounds: '',
-	transposes: '',
-	clef: '',
-},
-{
-	name: 'Glockenspiel',
-	family: 'Percussion',
-	pitch: '',
-	sounds: '',
-	transposes: '',
-	clef: '',
-},
-{
-	name: 'Timpani',
-	family: 'Percussion',
-	pitch: '',
-	sounds: '',
-	transposes: '',
-	clef: '',
-},
-{
-	name: 'Bells',
-	family: 'Percussion',
-	pitch: '',
-	sounds: '',
-	transposes: '',
-	clef: '',
-},
-{
-	name: 'Xylophone',
-	family: 'Percussion',
-	pitch: '',
-	sounds: '',
-	transposes: '',
-	clef: '',
-},
-{
-	name: 'Vibraphone',
-	family: 'Percussion',
-	pitch: 'Concert Pitch',
-	sounds: 'Concert Pitch',
-	transposes: 'none',
-	clef: 'Grand Staff',
-},
-{
-	name: 'Mirimba',
-	family: 'Percussion',
-	pitch: 'Concert Pitch',
-	sounds: 'Concert Pitch',
-	transposes: 'none',
-	clef: 'Treble',
-},
-{
-	name: 'Harpsichord',
-	family: 'Strings',
-	pitch: 'Concert Pitch',
-	sounds: 'Concert Pitch',
-	transposes: 'none',
-	clef: 'Grand Staff',
-},
-
-{
-	name: 'Violin',
-	family: 'Strings',
-	pitch: 'Concert Pitch',
-	sounds: 'Concert Pitch',
-	transposes: 'none',
-	clef: 'Treble',
-},
-{
-	name: 'Cello',
-	family: 'Strings',
-	pitch: 'Concert Pitch',
-	sounds: 'Concert Pitch',
-	transposes: 'none',
-	clef: 'Bass',
-},
-{
-	name: 'Viola',
-	family: 'Strings',
-	pitch: 'Concert Pitch',
-	sounds: 'Concert Pitch',
-	transposes: 'none',
-	clef: 'Alto,Treble',
-},
-{
-	name: 'Harp',
-	family: 'Strings',
-	pitch: 'Concert Pitch',
-	sounds: 'Concert Pitch',
-	transposes: 'none',
-	clef: 'Grand Staff',
-},
-{
-	name: 'Guitar',
-	family: 'Strings',
-	pitch: 'n/a',
-	sounds: 'P8 Lower',
-	transposes: 'P8 higher',
-	clef: 'Treble',
-},
-{
-	name: 'Double Bass',
-	family: 'Strings',
-	pitch: 'n/a',
-	sounds: 'P8 lower',
-	clef: 'Bass',
-},
-{
-	name: 'Flute',
-	family: 'Woodwinds',
-	pitch: 'Concert Pitch',
-	sounds: 'Concert Pitch',
-	transposes: 'none',
-	clef: 'Treble',
-},
-{
-	name: 'Piccolo',
-	family: 'Woodwinds',
-	pitch: 'n/a',
-	sounds: 'P8 higher',
-	transposes: 'P8 lower',
-	clef: 'Treble',
-},
-{
-	name: 'Clarinet',
-	family: 'Woodwinds',
-	pitch: 'Bb',
-	sounds: 'M2 lower',
-	transposes: 'M2 higher',
-	clef: 'Treble',
-},
-{
-	name: 'Clarinet',
-	family: 'Woodwinds',
-	pitch: 'A',
-	sounds: 'm3 lower',
-	transposes: 'm3 higher',
-	clef: 'Treble',
-},
-{
-	name: 'Clarinet',
-	family: 'Woodwinds',
-	pitch: 'Eb',
-	sounds: 'M6 lower',
-	transposes: 'M6 higher',
-	clef: 'Treble',
-},
-{
-	name: 'Bass Clarinet',
-	family: 'Woodwinds',
-	pitch: 'Bb',
-	sounds: 'M9 lower',
-	transposes: 'M9 higher',
-	clef: 'Bass',
-},
-{
-	name: 'Bassoon',
-	family: 'Woodwinds',
-	pitch: 'Concert Pitch',
-	sounds: 'Concert Pitch',
-	transposes: 'none',
-	clef: 'Bass',
-},
-{
-	name: 'Contrabassoon',
-	family: 'Woodwinds',
-	pitch: 'n/a',
-	sounds: 'P8 lower',
-	transposes: 'P8 higher',
-	clef: 'Bass',
-},
-{
-	name: 'Oboe',
-	family: 'Woodwinds',
-	pitch: 'Concert Pitch',
-	sounds: 'Concert Pitch',
-	transposes: 'none',
-	clef: 'Treble',
-},
-{
-	name: 'Organ',
-	family: 'Woodwinds',
-	pitch: 'Concert Pitch',
-	sounds: 'Concert Pitch',
-	transposes: 'none',
-	clef: 'Treble',
-},
-];
+var pool = new pg.Pool({
+  database: 'instrument_app',
+  user: 'instrument_admin',
+  password: 'admin'
+});
 
 //TEST ROUTE to make sure everything is working (accessed at GET http://localhost:8080/api)
 router.get('/', function(req, res){
@@ -307,90 +36,49 @@ router.get('/', function(req, res){
 
 // Additional API Routes:-------------------------------------
 router.get('/search', function(req,res) {
-	var filteredInstruments = instruments;
+  var dbQuery = 'select * from instruments where true';
 
-	for(key in req.query){
-		console.log(key);
+  for (var key in req.query) {
+    var value = req.query[key];
+    dbQuery = `${dbQuery} and ${key} = '${value}'`;
+  }
 
-		var value = req.query[key];
-		console.log(value);
-
-		filteredInstruments = filteredInstruments.filter(function(instrument){
-			return instrument[key] === value;
-		});
-	}
-	res.json(filteredInstruments);
-});
-
-router.get('/instruments/:instrumentName', function(req, res){
-	var instrumentName = req.params.instrumentName;
-
-	/*
-	*Give back the instrument that matches
-	*the instrument name passed via the URL
-	*/
-
-	var instrument = instruments.filter(function(instrument){
-		return instrument.name === instrumentName;
-	});
-
-	res.json(instrument);
-});
-
-router.get('/family/:instrumentFamily', function(req,res){
-	var instrumentFamily = req.params.instrumentFamily;
-
-	/*
-	*Give back a list of all the instruments that match
-	*the family passed via the URL
-	*/
-
-  var instrumentList = instruments.filter(function(instrument) {
-    return instrument.family === instrumentFamily;
-  });
-
-	res.json(instrumentList);
-});
-
-router.get('/clef/:instrumentClef', function(req,res){
-	var instrumentClef = req.params.instrumentClef;
-
-	/*
-	*Give back a list of all the instruments that matches
-	*the clef attribute passed via the URL
-	*/
-
-  var instrumentList = instruments.filter(function(instrument) {
-    return instrument.clef === instrumentClef;
-  });
-
-	res.json(instrumentList);
+  pool.connect()
+    .then(function() {
+      return pool.query(dbQuery);
+    })
+    .then(function(results) {
+      var instruments = results.rows;
+      res.json(instruments);
+    });
 });
 
 router.get('/families', function(req,res){
+  pool.connect()
+    .then(function() {
+      return pool.query('select distinct family from instruments');
+    })
+    .then(function(results) {
+      var families = results.rows.map(function(row) {
+        return row.family;
+      });
 
-	/*
-	*Give back a list of all the possible families in database
-	*/
-  var familyList = instruments.map(function(instrument) {
-    return instrument.family;
-  	});
-  var uniqueFamilyList = _.uniq(familyList);
-
-	res.json(uniqueFamilyList);
+      res.json(families);
+    });
 });
 
 router.get('/clefs', function(req,res){
+  pool.connect()
+    .then(function() {
+      return pool.query('select distinct clef from instruments');
+    })
+    .then(function(results) {
+      var clefs = results.rows.map(function(row) {
+        return row.clef;
+      });
 
-	/*
-	*Give back a list of all the possible families in database
-	*/
-  var clefList = instruments.map(function(instrument) {
-    return instrument.clef;
-  	});
-  var uniqueClefList = _.uniq(clefList);
- 
-	res.json(uniqueClefList);
+      res.json(clefs);
+    });
 });
 
 //REGISTER OUR ROUTES-------------------------------

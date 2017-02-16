@@ -9,6 +9,7 @@
     "express": "~4.0.0",
     "mongoose": "~3.6.13",
     "nodemon": "^1.11.0",
+    "pg": "^6.1.2",
     "underscore-node": "^0.1.2"
   }
 }
