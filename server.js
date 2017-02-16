@@ -8,7 +8,6 @@
 var express = require('express'); 		//call express
 var app = express();					//define our app using express
 var bodyParser = require('body-parser');
-var _ = require('underscore-node');
 var pg = require('pg');
 
 
@@ -44,7 +43,8 @@ router.get('/search', function(req,res) {
   }
 
   pool.connect()
-    .then(function() {
+    .then(function(client) {
+      client.release();
       return pool.query(dbQuery);
     })
     .then(function(results) {
@@ -55,7 +55,8 @@ router.get('/search', function(req,res) {
 
 router.get('/families', function(req,res){
   pool.connect()
-    .then(function() {
+    .then(function(client) {
+      client.release();
       return pool.query('select distinct family from instruments');
     })
     .then(function(results) {
@@ -69,7 +70,8 @@ router.get('/families', function(req,res){
 
 router.get('/clefs', function(req,res){
   pool.connect()
-    .then(function() {
+    .then(function(client) {
+      client.release();
       return pool.query('select distinct clef from instruments');
     })
     .then(function(results) {
