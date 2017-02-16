@@ -8,8 +8,10 @@
 var express = require('express'); 		//call express
 var app = express();					//define our app using express
 var bodyParser = require('body-parser');
-var _ = require('underscore-node');
 var pg = require('pg');
+var dotenv = require('dotenv');
+
+dotenv.load();
 
 
 //configure app to use bodyParser()
@@ -23,11 +25,7 @@ var port = process.env.PORT || 8080;	//set our port
 //======================================================================
 
 var router = express.Router();			//get an instance of the express router
-var pool = new pg.Pool({
-  database: 'instrument_app',
-  user: 'instrument_admin',
-  password: 'admin'
-});
+var pool = new pg.Pool();
 
 //TEST ROUTE to make sure everything is working (accessed at GET http://localhost:8080/api)
 router.get('/', function(req, res){
@@ -44,7 +42,8 @@ router.get('/search', function(req,res) {
   }
 
   pool.connect()
-    .then(function() {
+    .then(function(client) {
+      client.release();
       return pool.query(dbQuery);
     })
     .then(function(results) {
@@ -55,7 +54,8 @@ router.get('/search', function(req,res) {
 
 router.get('/families', function(req,res){
   pool.connect()
-    .then(function() {
+    .then(function(client) {
+      client.release();
       return pool.query('select distinct family from instruments');
     })
     .then(function(results) {
@@ -69,7 +69,8 @@ router.get('/families', function(req,res){
 
 router.get('/clefs', function(req,res){
   pool.connect()
-    .then(function() {
+    .then(function(client) {
+      client.release();
       return pool.query('select distinct clef from instruments');
     })
     .then(function(results) {
