@@ -9,6 +9,9 @@ var express = require('express'); 		//call express
 var app = express();					//define our app using express
 var bodyParser = require('body-parser');
 var pg = require('pg');
+var dotenv = require('dotenv');
+
+dotenv.load();
 
 
 //configure app to use bodyParser()
@@ -22,11 +25,7 @@ var port = process.env.PORT || 8080;	//set our port
 //======================================================================
 
 var router = express.Router();			//get an instance of the express router
-var pool = new pg.Pool({
-  database: 'instrument_app',
-  user: 'instrument_admin',
-  password: 'admin'
-});
+var pool = new pg.Pool();
 
 //TEST ROUTE to make sure everything is working (accessed at GET http://localhost:8080/api)
 router.get('/', function(req, res){
