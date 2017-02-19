@@ -1,33 +1,44 @@
+@media screen and (max-width: 600px){
 body {
-	margin:0;
-	background-color: rgba(129, 175, 222, 1);
+	margin:auto;
+	background-color: rgba(0, 0, 0, 1);
 }
 
 
 .header{
 	position:relative;
+	margin-left:auto;
+	margin-right:auto;
+	width:90%;
+	z-index:10;
+	height: 30%;
+	border: 3px solid;
+	border-color: rgba(137, 31, 31, 1);
+	box-sizing:border-box;
+	background-color: rgba(129, 175, 222, 1);
 }
 
 #header-text {
 	font-family: "Yellowtail",serif;
-	font-size:30px;
+	font-size:18px;
 	font-weight:500;
 	text-align: center;
 	margin:auto;
 	position:relative;
 	padding:50px;
 	box-sizing: border-box;
+	z-index:10;
 }
 
-.header,
 #instrument-form,
 #results {
-	margin:25px auto 25px auto;
+	margin:15px auto 15px auto;
 	width: 80%;
 	height: 30%;
 	border: 3px solid;
 	border-color: rgba(137, 31, 31, 0.6);
 	box-sizing:border-box;
+	background-color: rgba(129, 175, 222, 1);
 
 }
 
@@ -41,7 +52,21 @@ body {
 	font-family: 'Droid Sans', sans-serif;
 	font-size: 12px;
 	font-weight: 400;
-	position:relative;
+}
+
+#results{
+	margin-left:10%;
+	margin-right:10%;
+	position:fixed;
+	max-height:30%;
+	overflow:scroll;
+}
+
+#results li {
+	display:inline-block;
+	padding: 10px;
+}
+
 }
 
 

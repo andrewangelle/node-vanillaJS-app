@@ -85,7 +85,7 @@ function showAllClefs() {
 //--------------------------------------------------------------------
 function clearResults(){
   var resultsList = document.getElementById('results');
-  resultsList.innerHTML = '';
+  resultsList.innerHTML = `<br><br>`;
 }
 
 
