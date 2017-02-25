@@ -1,7 +1,11 @@
-# Instrument App:
-Requirements
-------------------------------------------------------------------------
-	-Node.js
+# Node Instrument Search App
+
+## Requirements
+
+```sh
+	Node.js
+	PostgresSQL
+```
 
 Project Goals
 -----------------------------------------------------------------------
