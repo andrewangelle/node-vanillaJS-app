@@ -82,6 +82,14 @@ router.get('/clefs', function(req,res){
     });
 });
 
+app.get('/admin/instruments', function(req, res) {
+  res.sendFile('instruments.html', { root: process.env.PWD });
+});
+
+app.get('/admin/instrument/:instrumentName', function(req, res) {
+  res.sendFile('instrument.html', { root: process.env.PWD });
+});
+
 //REGISTER OUR ROUTES-------------------------------
 //all of our routes will be prefixed with /api
 app.use('/api', router);
