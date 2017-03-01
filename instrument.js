@@ -1,3 +1,5 @@
+
+
 function getInstrument() {
   var instrumentName = window.location.pathname.split('/')[3];
 
@@ -6,27 +8,44 @@ function getInstrument() {
       return response.json();
     })
     .then(function(results) {
+      setName(results[0]);
+      setFamily(results[0]);
       console.log(results);
     });
 }
 
-function updateResults(results) {
-  var resultsList = document.getElementById('edit-instrument-form');
-    
+function getAllFamilies(){
+  fetch('/api/families')
+      .then(function(response) {
+        return response.json();
+      })
+      .then(function(results) {
+        populateAllFamilies(results);
+      });
+}
+
+
+
+
+function setName (instrument){
+	document.getElementById('instrument-name').value = instrument.name;
+}
+
+function setFamily(instrument){
+	console.log(document.getElementById('dropdowns-family').value) = instrument.family;
+}
+function populateAllFamilies(results){
+  var familyDropdown = document.getElementById('dropdowns-family');
+
   for (var result of results) {
-    var listItem = document.createElement('li');
-    listItem.innerHTML = `
-      <h3> ${ result.name } </h3>
-      <h5> Family : ${ result.family } </h5>
-      <h5> Pitch : ${ result.pitch } </h5>
-      <h5> Sounds at : ${ result.sounds } </h5>
-      <h5> Transposes : ${ result.transposes } </h5>
-      <h5> Reads ${ result.clef } Clef </h5>
+    var optionElement = document.createElement('option');
+    optionElement.innerHTML = `<h5> ${ result } </h5>`;
 
-    `;
 
-    resultsList.appendChild(listItem);
+    familyDropdown.appendChild(optionElement);
   }
 }
 
+
 getInstrument();
+getAllFamilies();
