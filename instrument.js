@@ -6,7 +6,6 @@ function getInstrument() {
       return response.json();
     })
     .then(function(results) {
-    	updateResults(results);
       console.log(results);
     });
 }
