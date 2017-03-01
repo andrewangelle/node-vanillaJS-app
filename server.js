@@ -83,11 +83,11 @@ router.get('/clefs', function(req,res){
 });
 
 app.get('/admin/instruments', function(req, res) {
-  res.sendFile('instruments.html', { root: process.env.PWD });
+  res.sendFile('instruments.html', { root: process.cwd() });
 });
 
 app.get('/admin/instrument/:instrumentName', function(req, res) {
-  res.sendFile('instrument.html', { root: process.env.PWD });
+  res.sendFile('instrument.html', { root: process.cwd() });
 });
 
 //REGISTER OUR ROUTES-------------------------------
