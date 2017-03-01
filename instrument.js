@@ -1,27 +1,34 @@
+function getInstrument(){
+	var instrumentName = window.location.pathname.split('/')[3];
 
+	Promise.all([
+		fetch(`/api/search/?name=${instrumentName}`),
+		fetch('/api/families'),
+		fetch('/api/clefs')
+	])
+		.then(function(responses){
+			return Promise.all([
+				responses[0].json(),
+				responses[1].json(),
+				responses[2].json()
+			]);
+		})
+		.then(function(results) {
+      		var instrument = results[0][0];
+      		var families = results[1];
+      		var clefs = results[0];
 
-function getInstrument() {
-  var instrumentName = window.location.pathname.split('/')[3];
-
-  fetch(`/api/search/?name=${instrumentName}`)
-    .then(function(response) {
-      return response.json();
-    })
-    .then(function(results) {
-      setName(results[0]);
-      setFamily(results[0]);
-      console.log(results);
+      		populateAllFamilies(families);
+      		populateAllClefs(clefs);
+      		setName(instrument);
+      		setFamily(instrument);
+      		setClef(instrument);
+      		console.log(results);
+      		console.log(instrument);
+      		console.log(families);
+      		console.log(clefs);
+      		
     });
-}
-
-function getAllFamilies(){
-  fetch('/api/families')
-      .then(function(response) {
-        return response.json();
-      })
-      .then(function(results) {
-        populateAllFamilies(results);
-      });
 }
 
 
@@ -32,20 +39,35 @@ function setName (instrument){
 }
 
 function setFamily(instrument){
-	console.log(document.getElementById('dropdowns-family').value) = instrument.family;
+	document.getElementById('dropdowns-family').value = instrument.family;
 }
-function populateAllFamilies(results){
+
+function setClef(instrument){
+	document.getElementById('dropdowns-clefs').value = instrument.clef;
+}
+
+function populateAllFamilies(families){
   var familyDropdown = document.getElementById('dropdowns-family');
 
-  for (var result of results) {
+  for (var family of families) {
     var optionElement = document.createElement('option');
-    optionElement.innerHTML = `<h5> ${ result } </h5>`;
+    optionElement.innerHTML = `<h5> ${ family } </h5>`;
 
 
     familyDropdown.appendChild(optionElement);
   }
 }
 
+function populateAllClefs(results) {
+  var clefDropdown = document.getElementById('dropdowns-clefs');
+
+  for (var result of results) {
+    var optionElement = document.createElement('option');
+    optionElement.innerHTML = `<h5> ${ result } </h5>`;
+
+    clefDropdown.appendChild(optionElement);
+  }
+}
+
 
 getInstrument();
-getAllFamilies();
