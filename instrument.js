@@ -16,7 +16,7 @@ function getInstrument(){
 		.then(function(results) {
       		var instrument = results[0][0];
       		var families = results[1];
-      		var clefs = results[0];
+      		var clefs = results[2];
 
       		populateAllFamilies(families);
       		populateAllClefs(clefs);
