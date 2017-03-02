@@ -4,25 +4,35 @@ function getInstrument(){
 	Promise.all([
 		fetch(`/api/search/?name=${instrumentName}`),
 		fetch('/api/families'),
-		fetch('/api/clefs')
+		fetch('/api/clefs'),
+    fetch('/api/sounds'),
+    fetch('/api/transposes')
 	])
 		.then(function(responses){
 			return Promise.all([
 				responses[0].json(),
 				responses[1].json(),
-				responses[2].json()
+				responses[2].json(),
+        responses[3].json()
 			]);
 		})
 		.then(function(results) {
       		var instrument = results[0][0];
       		var families = results[1];
       		var clefs = results[2];
+          var sounds = results[3];
+          var transposes = results[2];
+
+          console.log(results[2]);
 
       		populateAllFamilies(families);
       		populateAllClefs(clefs);
+          populateAllSounds(results);
       		setName(instrument);
       		setFamily(instrument);
       		setClef(instrument);
+          setSounds(instrument);
+          setTransposes(instrument);
       		console.log(results);
       		console.log(instrument);
       		console.log(families);
@@ -44,6 +54,14 @@ function setFamily(instrument){
 
 function setClef(instrument){
 	document.getElementById('dropdowns-clefs').value = instrument.clef;
+}
+
+function setSounds(instrument){
+  document.getElementById('dropdowns-sounds').value = instrument.sounds;
+}
+
+function setTransposes(instrument){
+  document.getElementById('dropdowns-transposes').value = instrument.transposes;
 }
 
 function populateAllFamilies(families){
@@ -69,5 +87,13 @@ function populateAllClefs(results) {
   }
 }
 
+function populateAllSounds(results){
+  var soundsDropdown = document.getElementById('dropdowns-sounds');
+
+  for(var result of results) {
+    var optionElement = document.createElement('option');
+    optionElement.innerHTML = `<h5> ${ result } </h5>`;
+ }
+}
 
 getInstrument();

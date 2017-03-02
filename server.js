@@ -86,7 +86,7 @@ router.get('/sounds', function(req,res){
   pool.connect()
     .then(function(client) {
       client.release();
-      return console.log(pool.query('select distinct sounds from instruments'));
+      return pool.query('select distinct sounds from instruments');
     })
     .then(function(results) {
       var sounds = results.rows.map(function(row) {
@@ -95,6 +95,22 @@ router.get('/sounds', function(req,res){
 
       res.json(sounds);
       console.log(sounds);
+    });
+});
+
+router.get('/transposes', function(req,res){
+  pool.connect()
+    .then(function(client) {
+      client.release();
+      return pool.query('select distinct transposes from instruments');
+    })
+    .then(function(results) {
+      var transposes = results.rows.map(function(row) {
+        return row.transposes;
+      });
+
+      res.json(transposes);
+      console.log(transposes);
     });
 });
 
