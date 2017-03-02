@@ -89,7 +89,7 @@ router.get('/sounds', function(req,res){
       return console.log(pool.query('select distinct sounds from instruments'));
     })
     .then(function(results) {
-      var clefs = results.rows.map(function(row) {
+      var sounds = results.rows.map(function(row) {
         return row.sounds;
       });
 
