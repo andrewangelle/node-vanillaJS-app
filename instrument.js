@@ -27,7 +27,7 @@ function getInstrument(){
 
       		populateAllFamilies(families);
       		populateAllClefs(clefs);
-          populateAllSounds(results);
+          populateAllSounds(sounds);
       		setName(instrument);
       		setFamily(instrument);
       		setClef(instrument);
@@ -76,10 +76,10 @@ function populateAllFamilies(families){
   }
 }
 
-function populateAllClefs(results) {
+function populateAllClefs(clefs) {
   var clefDropdown = document.getElementById('dropdowns-clefs');
 
-  for (var result of results) {
+  for (var clef of clefs) {
     var optionElement = document.createElement('option');
     optionElement.innerHTML = `<h5> ${ result } </h5>`;
 
@@ -87,12 +87,12 @@ function populateAllClefs(results) {
   }
 }
 
-function populateAllSounds(results){
+function populateAllSounds(sounds){
   var soundsDropdown = document.getElementById('dropdowns-sounds');
 
-  for(var result of results) {
+  for(var sound of sounds) {
     var optionElement = document.createElement('option');
-    optionElement.innerHTML = `<h5> ${ result } </h5>`;
+    optionElement.innerHTML = `<h5> ${ sound } </h5>`;
  }
 }
 
