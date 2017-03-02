@@ -82,6 +82,22 @@ router.get('/clefs', function(req,res){
     });
 });
 
+router.get('/sounds', function(req,res){
+  pool.connect()
+    .then(function(client) {
+      client.release();
+      return console.log(pool.query('select distinct sounds from instruments'));
+    })
+    .then(function(results) {
+      var clefs = results.rows.map(function(row) {
+        return row.sounds;
+      });
+
+      res.json(sounds);
+      console.log(sounds);
+    });
+});
+
 app.get('/admin/instruments', function(req, res) {
   res.sendFile('instruments.html', { root: process.cwd() });
 });
