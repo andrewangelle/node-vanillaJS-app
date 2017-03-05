@@ -17,12 +17,12 @@
 
   <form id="edit-instrument-form">
       <label for="instrument-name">Name</label>
-      <input type="text" id="instrument-name" />      
+      <input type="text" id="instrument-name" />    
     <br>
       <label for="instrument-family">Family</label>
       <select name="Families" id="dropdowns-family">
         <option></option>
-      </select>
+      </select>  
     <br>
       <label for="instrument-clef">Clef</label>
       <select name="Clefs" id="dropdowns-clefs">
@@ -37,7 +37,14 @@
       <label for="instrument-transposes">Transposes: </label>
       <select name="Transposes" id="dropdowns-transposes">
         <option></option>
+      </select>
+    <br>
+    <br>
+      <input type="submit" value="Update Changes" id="search-button">
   </form>
+
+        
+
 
     <script src="https://cdnjs.cloudflare.com/ajax/libs/fetch/2.0.2/fetch.min.js"></script>
     <script src="/instrument.js"></script>

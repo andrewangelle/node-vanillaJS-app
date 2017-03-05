@@ -1,4 +1,4 @@
-function getInstrument(){
+function getAllInstrumentInfo(){
 	var instrumentName = window.location.pathname.split('/')[3];
 
 	Promise.all([
@@ -13,7 +13,8 @@ function getInstrument(){
 				responses[0].json(),
 				responses[1].json(),
 				responses[2].json(),
-        responses[3].json()
+        responses[3].json(),
+        responses[4].json()
 			]);
 		})
 		.then(function(results) {
@@ -21,28 +22,20 @@ function getInstrument(){
       		var families = results[1];
       		var clefs = results[2];
           var sounds = results[3];
-          var transposes = results[2];
+          var transposes = results[4];
+          
+          populateDropdown(families, 'dropdowns-family');
+          populateDropdown(clefs, 'dropdowns-clefs');
+          populateDropdown(sounds, 'dropdowns-sounds');
+          populateDropdown(transposes, 'dropdowns-transposes');
 
-          console.log(results[2]);
-
-      		populateAllFamilies(families);
-      		populateAllClefs(clefs);
-          populateAllSounds(sounds);
       		setName(instrument);
       		setFamily(instrument);
       		setClef(instrument);
           setSounds(instrument);
           setTransposes(instrument);
-      		console.log(results);
-      		console.log(instrument);
-      		console.log(families);
-      		console.log(clefs);
-      		
     });
 }
-
-
-
 
 function setName (instrument){
 	document.getElementById('instrument-name').value = instrument.name;
@@ -64,36 +57,18 @@ function setTransposes(instrument){
   document.getElementById('dropdowns-transposes').value = instrument.transposes;
 }
 
-function populateAllFamilies(families){
-  var familyDropdown = document.getElementById('dropdowns-family');
 
-  for (var family of families) {
+function populateDropdown(options, element) {
+  var element = document.getElementById(element);
+
+  for(var option of options) {
     var optionElement = document.createElement('option');
-    optionElement.innerHTML = `<h5> ${ family } </h5>`;
+    optionElement.innerHTML = option;
 
-
-    familyDropdown.appendChild(optionElement);
+    element.appendChild(optionElement);
   }
 }
 
-function populateAllClefs(clefs) {
-  var clefDropdown = document.getElementById('dropdowns-clefs');
 
-  for (var clef of clefs) {
-    var optionElement = document.createElement('option');
-    optionElement.innerHTML = `<h5> ${ result } </h5>`;
 
-    clefDropdown.appendChild(optionElement);
-  }
-}
-
-function populateAllSounds(sounds){
-  var soundsDropdown = document.getElementById('dropdowns-sounds');
-
-  for(var sound of sounds) {
-    var optionElement = document.createElement('option');
-    optionElement.innerHTML = `<h5> ${ sound } </h5>`;
- }
-}
-
-getInstrument();
+getAllInstrumentInfo();
