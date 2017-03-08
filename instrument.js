@@ -1,8 +1,8 @@
 function getAllInstrumentInfo(){
-	var instrumentName = window.location.pathname.split('/')[3];
+	var instrumentId = window.location.pathname.split('/')[3];
 
 	Promise.all([
-		fetch(`/api/search/?name=${instrumentName}`),
+		fetch(`/api/search/?id=${instrumentId}`),
 		fetch('/api/families'),
 		fetch('/api/clefs'),
     fetch('/api/sounds'),
@@ -29,12 +29,17 @@ function getAllInstrumentInfo(){
           populateDropdown(sounds, 'dropdowns-sounds');
           populateDropdown(transposes, 'dropdowns-transposes');
 
+      		setId(instrument);
       		setName(instrument);
       		setFamily(instrument);
       		setClef(instrument);
           setSounds(instrument);
           setTransposes(instrument);
     });
+}
+
+function setId (instrument){
+	document.getElementById('instrument-id').value = instrument.id;
 }
 
 function setName (instrument){
@@ -69,6 +74,34 @@ function populateDropdown(options, element) {
   }
 }
 
+//Get ahold of values set on forms
+function updateChanges(event){
+  var editInstrumentForm = document.getElementById('edit-instrument-form');
 
+  editInstrumentForm.addEventListener('submit', function(event){
+    event.preventDefault();
 
+    var id = document.getElementById('instrument-id').value;
+    var name = document.getElementById('instrument-name').value;
+    var family = document.getElementById('dropdowns-family').value;
+    var clef = document.getElementById('dropdowns-clefs').value;
+    var sounds = document.getElementById('dropdowns-sounds').value;
+    var transposes = document.getElementById('dropdowns-transposes').value;
+
+    console.log(id);
+    console.log(name);
+    console.log(family);
+    console.log(clef);
+    console.log(sounds);
+    console.log(transposes);
+
+    fetch(`/api/instrument/update?id=${id}&name=${name}&family=${family}&clef=${clef}&sounds=${sounds}&transposes=${transposes}`)
+      .then(function() {
+        console.log('updated');
+      });
+  })
+
+}
+
+updateChanges();
 getAllInstrumentInfo();

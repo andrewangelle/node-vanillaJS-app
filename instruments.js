@@ -14,7 +14,7 @@ function updateInstruments(instruments) {
   for (var instrument of instruments) {
     var listItem = document.createElement('li');
     listItem.innerHTML = `
-      <a href="instrument/${instrument.name}">${ instrument.name }</a>
+      <a href="instrument/${instrument.id}">${ instrument.name }</a>
     `;
 
     instrumentsList.appendChild(listItem);

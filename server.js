@@ -94,7 +94,6 @@ router.get('/sounds', function(req,res){
       });
 
       res.json(sounds);
-      console.log(sounds);
     });
 });
 
@@ -110,8 +109,28 @@ router.get('/transposes', function(req,res){
       });
 
       res.json(transposes);
-      console.log(transposes);
     });
+});
+
+router.get('/instrument/update', function(req,res){
+  var dbQuery = 'update instruments set';
+
+  var values = Object.keys(req.query)
+    .filter(function(key) {
+      return key !== 'id';
+    })
+    .map(function(key) {
+      var value = req.query[key];
+      return `${key} = '${value}'`;
+    }).join(', ');
+
+  dbQuery = `${dbQuery} ${values} where id = '${req.query.id}'`;
+
+  pool.connect()
+    .then(function(client){
+      client.release();
+      return pool.query(dbQuery);
+    })
 });
 
 app.get('/admin/instruments', function(req, res) {
