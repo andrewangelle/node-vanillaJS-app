@@ -137,8 +137,12 @@ app.get('/admin/instruments', function(req, res) {
   res.sendFile('instruments.html', { root: process.cwd() });
 });
 
-app.get('/admin/instrument/:instrumentName', function(req, res) {
+app.get('/admin/instrument/:instrumentName/edit', function(req, res) {
   res.sendFile('instrument.html', { root: process.cwd() });
+});
+
+app.get('/admin/instrument/create', function(req, res) {
+  res.sendFile('create-instrument.html', { root: process.cwd() });
 });
 
 //REGISTER OUR ROUTES-------------------------------
