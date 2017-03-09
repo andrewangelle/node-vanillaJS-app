@@ -11,20 +11,45 @@
   <body>
 
     <div class="header">
-      <h5 id="header-text">Orchestral Instrument Search</h5>
+      <h5 id="header-text">Database Admin</h5>
     </div>
 
 
-    <div id="instruments">
-      <a href="/admin/instrument/create">Create New</a>
-      <ul id="instrument-list">
-      </ul>
-    </div>
+  <form id="edit-instrument-form">
+      <label for="instrument-name">Name</label>
+      <input type="text" id="instrument-name" />    
+    <br>
+      <label for="instrument-family">Family</label>
+      <select name="Families" id="dropdowns-family">
+        <option></option>
+      </select>  
+    <br>
+      <label for="instrument-clef">Clef</label>
+      <select name="Clefs" id="dropdowns-clefs">
+        <option></option>
+      </select>
+    <br>
+      <label for="instrument-sounds">Sounding Pitch: </label>
+      <select name="Sounds" id="dropdowns-sounds">
+        <option></option>
+      </select>
+    <br>
+      <label for="instrument-transposes">Transposes: </label>
+      <select name="Transposes" id="dropdowns-transposes">
+        <option></option>
+      </select>
+    <br>
+    <br>
+      <input type="submit" value="Update Changes" id="search-button">
+  </form>
+
+        
+
 
     <script src="https://www.gstatic.com/firebasejs/3.7.0/firebase.js"></script>
     <script src="/auth.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/fetch/2.0.2/fetch.min.js"></script>
-    <script src="/instruments.js"></script>
+    <script src="/create-instrument.js"></script>
 
   </body>
 </html>
