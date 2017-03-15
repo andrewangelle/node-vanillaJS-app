@@ -31,7 +31,7 @@ function multiFieldSearch(){
 
 
     /**
-     * Fetch JSON data from family API
+     * Fetch JSON data from search API
      * Convert JSON to JS object
      * Update results list
      */

@@ -133,6 +133,30 @@ router.get('/instrument/update', function(req,res){
     })
 });
 
+router.get('/instrument/create', function(req,res){
+  var dbQuery = 'insert into instruments(name,family,clef,sounds,transposes)';
+
+  var values = Object.keys(req.query)
+    .map(function(key) {
+      var value = req.query[key];
+      return `'${value}'`;
+    }).join(',');
+
+  dbQuery = `${dbQuery}values(${values});`;
+
+  console.log(dbQuery);
+
+  pool.connect()
+    .then(function(client){
+      client.release();
+      return pool.query(dbQuery);
+    })
+    .catch((error) => {
+      console.log(error);
+      error;
+    })
+});
+
 app.get('/admin/instruments', function(req, res) {
   res.sendFile('instruments.html', { root: process.cwd() });
 });
