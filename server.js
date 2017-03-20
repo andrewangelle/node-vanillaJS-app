@@ -161,10 +161,10 @@ router.get('/instrument/delete', function(req,res){
   var dbQuery = 'delete from instruments where id ='
   var id = req.query.id;
 
-  dbQuery = `${ dbQuery } ${ instrumentID }`;
+  dbQuery = `${ dbQuery } ${ id }`;
 
   console.log(dbQuery);
-  console.log(instrumentID);
+  console.log(id);
 
   pool.connect()
   .then(function(client){
