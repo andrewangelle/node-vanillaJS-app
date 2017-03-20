@@ -157,6 +157,22 @@ router.get('/instrument/create', function(req,res){
     })
 });
 
+router.get('/instrument/delete', function(req,res){
+  var dbQuery = 'delete from instruments where id ='
+  var id = req.query.id;
+
+  dbQuery = `${ dbQuery } ${ instrumentID }`;
+
+  console.log(dbQuery);
+  console.log(instrumentID);
+
+  pool.connect()
+  .then(function(client){
+    client.release();
+    return pool.query(dbQuery);
+  })
+});
+
 app.get('/admin/instruments', function(req, res) {
   res.sendFile('instruments.html', { root: process.cwd() });
 });

@@ -103,5 +103,21 @@ function updateChanges(event){
 
 }
 
+function deleteInstrument(){
+  var deleteButton = document.getElementById('delete-button');
+
+  deleteButton.addEventListener('click', function(ev){
+
+    var id = document.getElementById('instrument-id').value;
+    console.log(id);
+
+    fetch(`/api/instrument/delete/?id=${id}`)
+      .then(function() {
+        console.log('deleted');
+      });
+  })
+}
+
 updateChanges();
 getAllInstrumentInfo();
+deleteInstrument();
