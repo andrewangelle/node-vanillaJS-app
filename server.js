@@ -151,10 +151,13 @@ router.get('/instrument/create', function(req,res){
       client.release();
       return pool.query(dbQuery);
     })
+    .then(function() {
+      res.json({ message: `Instrument created successfully` });
+    })
     .catch((error) => {
       console.log(error);
       error;
-    })
+    });
 });
 
 router.get('/instrument/delete', function(req,res){
@@ -167,10 +170,13 @@ router.get('/instrument/delete', function(req,res){
   console.log(id);
 
   pool.connect()
-  .then(function(client){
-    client.release();
-    return pool.query(dbQuery);
-  })
+    .then(function(client){
+      client.release();
+      return pool.query(dbQuery);
+    })
+    .then(function() {
+      res.json({ message: `Instrument ${id} deleted successfully` });
+    });
 });
 
 app.get('/admin/instruments', function(req, res) {

@@ -37,7 +37,10 @@ function populateDropdown(options, element) {
   }
 }
 
-//Get ahold of values set on forms
+function redirectToAdminPage() {
+  window.location.href = "/admin/instruments";
+}
+
 function updateChanges(event){
   var editInstrumentForm = document.getElementById('edit-instrument-form');
 
@@ -58,6 +61,8 @@ function updateChanges(event){
 
     fetch(`/api/instrument/create?name=${name}&family=${family}&clef=${clef}&sounds=${sounds}&transposes=${transposes}`)
       .then(function() {
+
+        redirectToAdminPage();
         console.log('created');
       });
   })

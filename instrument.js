@@ -75,7 +75,7 @@ function populateDropdown(options, element) {
 }
 
 //Get ahold of values set on forms
-function updateChanges(event){
+function updateChangesToInstrument(event){
   var editInstrumentForm = document.getElementById('edit-instrument-form');
 
   editInstrumentForm.addEventListener('submit', function(event){
@@ -103,6 +103,10 @@ function updateChanges(event){
 
 }
 
+function redirect(){
+  window.location.href = '/admin/instruments';
+}
+
 function deleteInstrument(){
   var deleteButton = document.getElementById('delete-button');
 
@@ -113,11 +117,15 @@ function deleteInstrument(){
 
     fetch(`/api/instrument/delete/?id=${id}`)
       .then(function() {
+
+        redirect();
         console.log('deleted');
+        
       });
   })
 }
 
-updateChanges();
+
 getAllInstrumentInfo();
+updateChangesToInstrument();
 deleteInstrument();
